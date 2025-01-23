@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptoEstates - Luxury Real Estate with Cryptocurrency</title>
+    <style>
+        /* Base Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            color: #e0e0e0;
+            background-color: #000; /* Black background color */
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed; /* Fix the header at the top */
+            top: 0; /* Align to the very top */
+            left: 0; /* Align to the left edge */
+            width: 100%; /* Stretch to full width */
+            padding: 1rem 1rem; /* Proper spacing */
+            text-align: center; /* Center text */
+            font-family: 'Inter', sans-serif, 'Playfair Display', serif; /* "Inter" font first, fallback to other fonts */
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            color: white; /* Text color */
+            z-index: 1000; /* Stay above all other elements */
+            backdrop-filter: blur(10px); /* Adds background blur */
+            -webkit-backdrop-filter: blur(10px); /* Safari compatibility */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Subtle bottom border */
+            display: flex; /* Use Flexbox */
+            align-items: center; /* Vertically align items */
+            justify-content: center; /* Center the content */
+        }
+
+        header .logo {
+            top: 20%;
+            width: 30px; /* Adjust logo size */
+            height: 36px; /* Maintain aspect ratio */
+            margin-right: 10px; /* Space between logo and text */
+            margin-top: -7px;
+        }
+
+        header h1 {
+            font-family: 'Inter', sans-serif; /* Apply 'Inter' to the h1 */
+            font-size: 1rem; /* Adjust font size for readability */
+            margin: 0; /* Remove unnecessary margin */
+            text-align: left; /* Align the text to the left */
+        }
+
+        header p {
+            font-family: 'Inter', sans-serif; /* Apply 'Inter' to the p */
+            font-size: 0.5rem; /* Adjust subtitle size */
+            margin: 0; /* Remove unnecessary margin */
+            text-align: left; /* Align the text to the left */
+        }
+
+        /* Video Section Styles */
+        .video-section {
+            position: relative;
+            height: 100vh; /* Full viewport height */
+            overflow: hidden;
+            margin-top: 80px; /* Create space between header and video */
+        }
+
+        .video-section video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            flex-direction: column;
+            padding: 0 20px;
+            z-index: 2;
+        }
+
+        .video-overlay .subtext {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            text-transform: uppercase;
+            font-weight: 300;
+            font-size: 1.2rem;
+            letter-spacing: 0.7px;
+            opacity: 0;
+            margin-bottom: -0.3rem;
+            line-height: 1.1;
+            animation: fadeIn 2s ease-out 0.5s forwards;
+        }
+
+        .video-overlay h1 {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-weight: bold;
+            font-size: 4.5rem;
+            margin-bottom: -0.2rem;
+            line-height: 1.05;
+            opacity: 0;
+            animation: fadeIn 2s ease-out 1.5s forwards;
+        }
+
+        .video-overlay h1 span {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 4.8rem;
+            opacity: 0;
+            animation: fadeIn 2s ease-out 2.5s forwards;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+
+        .fade-in-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Content Section */
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #111;
+            padding: 1rem;
+            margin-top: 5rem;
+        }
+        nav a {
+            color: white;
+            margin: 0 1.5rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #7f6336;
+        }
+        section {
+            padding: 3rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        h1, h2 {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+        h1 {
+            font-size: 3rem;
+        }
+        h2 {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-weight: bold;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer Styles */
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #111;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.9rem;
+            z-index: 3;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        footer p {
+            margin: 0;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:ital,wght@1,400&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <img class="logo" src="logo.png" alt="CryptoEstates Logo"> <!-- Add your logo here -->
+    <div>
+        <p>‎ ‎ </p>
+        <h1>CRYPTOESTATES</h1>
+        <p>‎ ‎ </p>
+    </div>
+</header>
+
+<div class="video-section">
+    <video autoplay muted loop>
+        <source src="luxury_real_estate.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="video-overlay">
+        <div class="subtext">The real estate for innovative investors</div>
+        <h1>
+            Discover your next <br>
+            <span>Luxury Property</span>
+        </h1>
+    </div>
+</div>
+
+<nav>
+    <ol style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+    <a href="#about">About</a>
+    <a href="#how-it-works">How It Works</a>
+    <a href="#calculator">Calculator</a>
+</nav>
+
+<section id="about" class="fade-in-section">
+    <h2>About CryptoEstates</h2>
+    <p style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">Welcome to CryptoEstates, where luxury meets innovation. We specialize in bridging the gap between cryptocurrency and premium real estate. Whether you're a seasoned investor or exploring your first property, our platform ensures a seamless and secure experience with unparalleled transparency and low service fees.</p>
+</section>
+
+<section id="how-it-works" class="fade-in-section">
+    <h2>How It Works</h2>
+    <ol style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+        <li>Explore our curated selection of luxury properties worldwide.</li>
+        <li>Select your dream property and choose your preferred cryptocurrency for payment.</li>
+        <li>Complete your secure, blockchain-based transaction effortlessly.</li>
+        <li>Own your property with confidence and join the future of real estate investment!</li>
+    </ol>
+</section>
+
+<footer>
+    <p>&copy; 2025 CryptoEstates. Luxury Real Estate, Redefined.</p>
+</footer>
+
+<script>
+      const fadeInSections = document.querySelectorAll('.fade-in-section');
+
+const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.1 });
+
+fadeInSections.forEach(section => {
+    observer.observe(section);
+});
+</script>
+
+</body>
+</html>
+
